@@ -2,6 +2,8 @@
 
 ### Sovelluksessa näkyy keskustelualueita, joista jokaisella on tietty aihe. Alueilla on keskusteluketjuja, jotka muodostuvat viesteistä. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
 
+Huom! Committaukset eivät näy oikealla nimellä (On Nicolas Kivimäki -> pitäisi olla Emma Tuovinen), koska jouduin tekemään projektiani poikaystäväni koneella.. Omani on hajalla.
+
 Sovelluksen saa käyttöön [Herokussa](https://tsoha-talk2us.herokuapp.com/)
 
 Sovelluksen toiminnallisuudet nyt:
