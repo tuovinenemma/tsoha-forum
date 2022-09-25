@@ -18,6 +18,12 @@ def login():
         else:
             return render_template("error.html", message="Väärä tunnus tai salasana")
 
+
+@app.route("/logout")
+def logout():
+    users.logout()
+    return redirect("/")
+
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if request.method == "GET":
@@ -32,3 +38,4 @@ def register():
             return redirect("/")
         else:
             return render_template("error.html", message="Rekisteröinti ei onnistunut")
+
