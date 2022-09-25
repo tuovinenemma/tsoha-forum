@@ -6,7 +6,8 @@ Sovelluksen saa käyttöön [Herokussa](https://tsoha-talk2us.herokuapp.com/)
 
 Sovelluksen toiminnallisuudet nyt:
 
-* Sovellukseen pystyy 
+* Sovellukseen pystyy kirjautumaan
+* Sovelluksen foorumiin pääsee sisälle
 
 Sovelluksen ominaisuuksia:
     
