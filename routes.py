@@ -37,6 +37,6 @@ def register():
 
 @app.route("/logout")
 def logout():
-    return redirect('/index')
+    return redirect('/login')
 
 
