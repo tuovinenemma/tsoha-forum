@@ -2,6 +2,8 @@
 <p>Olet kirjautunut nimellä {{ session.user_id }}</p>
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
+<h1>Talk2Us</h1>
+<p>
 <h2>Kirjautuminen</h2>
 <form action="/login" method="POST">
 <p>Tunnus:<br>
