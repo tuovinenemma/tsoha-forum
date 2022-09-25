@@ -1,5 +1,6 @@
 from app import app
 from flask import render_template, request, redirect, session
+from db import db
 import users
 
 @app.route("/")
@@ -38,5 +39,13 @@ def register():
 @app.route("/logout")
 def logout():
     return redirect('/login')
+
+@app.route("/send", methods=["POST"])
+def send():
+    content = request.form["content"]
+    sql = "INSERT INTO messages (content) VALUES (:content)"
+    db.session.execute(sql, {"content":content})
+    db.session.commit()
+    return redirect("/")
 
 
