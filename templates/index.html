@@ -1,3 +1,4 @@
+{% block content %}
 {% if session.username %}
 <p>Olet kirjautunut käyttäjänimellä {{ session.username }}</p>
 <a href="/logout">Kirjaudu ulos</a>
@@ -9,3 +10,4 @@
 <p>
 <a href="/register">Luo käyttäjä</a>
 {% endif %}
+{% endblock %}
