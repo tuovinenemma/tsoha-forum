@@ -13,10 +13,10 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.login(username, password):
-            return redirect("/")
-        else:
-            return render_template("error.html", message="Väärä käyttäjätunnus tai salasana")
+        #if users.login(username, password):
+        return redirect("/forum")
+        #else:
+        #    return render_template("error.html", message="Väärä käyttäjätunnus tai salasana")
 
 
 @app.route("/logout")
