@@ -38,7 +38,6 @@ def register():
 
 @app.route("/logout")
 def logout():
-    del session['username']
-    return redirect('/')
+    return redirect('/index')
 
 
