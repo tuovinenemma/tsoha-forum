@@ -2,6 +2,7 @@
 <p>Olet kirjautunut nimellä {{ session.user_id }}</p>
 <a href="/logout">Kirjaudu ulos</a>
 {% else %}
+<h2>Kirjautuminen</h2>
 <form action="/login" method="POST">
 <p>Tunnus:<br>
 <input type="text" name="username"></p>
