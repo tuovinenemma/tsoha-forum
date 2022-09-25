@@ -2,6 +2,10 @@
 
 ### Sovelluksessa näkyy keskustelualueita, joista jokaisella on tietty aihe. Alueilla on keskusteluketjuja, jotka muodostuvat viesteistä. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
 
+Sovelluksen toiminnallisuudet nyt:
+
+* Sovellukseen pystyy 
+
 Sovelluksen ominaisuuksia:
     
 * Käyttäjä voi kirjautua sisään ja ulos sekä luoda uuden tunnuksen.
