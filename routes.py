@@ -19,6 +19,10 @@ def login():
         #    return render_template("error.html", message="Väärä käyttäjätunnus tai salasana")
 
 
+@app.route("/forum")
+def forum():
+    return render_template("forum.html")
+
 @app.route("/logout")
 def logout():
     users.logout()
