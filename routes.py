@@ -28,7 +28,7 @@ def login():
         if not users.login(username, password):
             return render_template('error.html', message='Väärä käyttäjätunnus tai salasana')
         session['username'] = username
-        return redirect("/")
+        return redirect("/forum")
 
 @app.route("/forum")
 def forum():
