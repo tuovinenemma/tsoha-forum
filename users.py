@@ -12,14 +12,24 @@ def login(username, password):
     else:
         hash_value = user['password']
         if check_password_hash(hash_value, password):
+            session['user_id'] = user[0]
+            session['user_username'] = user[1]
             return True
         return False
 
 def register(username, password):
-    hash_value = generate_password_hash(password)
-    sql = 'INSERT into users (username, password, role) values (:username, :password)'
-    db.session.execute(sql, {'username': username, 'password': hash_value})
-    db.session.commit()
+    #hash_value = generate_password_hash(password)
+    #sql = 'INSERT into users (username, password, role) values (:username, :password)'
+    #db.session.execute(sql, {'username': username, 'password': hash_value})
+    #db.session.commit()
 
+    hash_value = generate_password_hash(password)
+    try:
+        sql = 'insert into users (username, password, role) values (:username, :password, :role)'
+        db.session.execute(sql, {'username': username, 'password': hash_value})
+        db.session.commit()
+    except:
+        return False
+    return True
 
 
