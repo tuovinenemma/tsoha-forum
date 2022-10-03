@@ -18,7 +18,7 @@ def login():
         if not users.login(username, password):
             return render_template('error.html', message='Väärä käyttäjätunnus tai salasana')
         session['username'] = username
-        return redirect("/")
+        return redirect("/forum")
 
 @app.route("/forum")
 def forum():
@@ -33,7 +33,7 @@ def register():
         username = request.form["username"]
         password = request.form["password"]
         users.register(username, password)
-    return redirect("/forum")
+    return redirect("/login")
         
 
 @app.route("/logout")
