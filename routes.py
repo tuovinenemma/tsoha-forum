@@ -15,10 +15,10 @@ def login():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        #if not users.login(username, password):
-        #    return render_template('error.html', message='Väärä käyttäjätunnus tai salasana')
-        #session['username'] = username
-        return redirect('/forum')
+        if not users.login(username, password):
+            return render_template('error.html', message='Väärä käyttäjätunnus tai salasana')
+        session['username'] = username
+        return redirect("/")
 
 @app.route("/forum")
 def forum():

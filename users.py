@@ -4,7 +4,7 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 
 def login(username, password):
-    sql = 'SELECT id, username, password, role FROM users WHERE username=:username'
+    sql = "SELECT id, password FROM users WHERE username=:username"    
     result = db.session.execute(sql, {'username': username})
     user = result.fetchone()
     if not user:
@@ -18,9 +18,7 @@ def login(username, password):
 def register(username, password):
     hash_value = generate_password_hash(password)
     sql = 'INSERT into users (username, password, role) values (:username, :password)'
-    db.session.execute(
-        sql, {'username': username, 'password': hash_value}
-    )
+    db.session.execute(sql, {'username': username, 'password': hash_value})
     db.session.commit()
 
 
