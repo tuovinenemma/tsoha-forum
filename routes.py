@@ -42,7 +42,7 @@ def login():
 
 @app.route("/logout")
 def logout():
-    return redirect('/login')
+    return redirect('/')
 
 
 
