@@ -2,10 +2,13 @@ from app import app
 from flask import render_template, request, redirect, session
 from db import db
 import users
+import messages
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    list = messages.get_list()
+    return render_template("index.html", count=len(list), messages=list)
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -41,6 +44,19 @@ def login():
 def logout():
     del session['username']
     return redirect('/')
+
+@app.route("/new")
+def new():
+    return render_template("new.html")
+
+@app.route("/send", methods=["POST"])
+def send():
+    content = request.form["content"]
+    if messages.send(content):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Viestin lähetys ei onnistunut")
+
 
 
 
