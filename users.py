@@ -37,7 +37,6 @@ def logout():
     try:
         session.pop('user_id', None)
         session.pop('user_username', None)
-        session.pop('user_role', None)
     except:
         return False
     return True
