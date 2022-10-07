@@ -34,5 +34,10 @@ def user_id():
     return session.get('user_id', 0)
 
 def logout():
-    del session['user_id']
-    del session['user_name']
+    try:
+        session.pop('user_id', None)
+        session.pop('user_username', None)
+        session.pop('user_role', None)
+    except:
+        return False
+    return True
