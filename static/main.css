@@ -1,0 +1,36 @@
+body {
+    margin: auto;
+    max-width: 55em;
+    font-family:'Helvetica';
+    background-color: #ffffff;
+}
+
+table {
+    width: 90%;
+}
+
+th, td {
+    padding: 0 1em 0 0;
+}
+
+.hd {
+    background: rgb(255, 255, 255);
+    font-weight: bold;
+    padding: 2em 2em;
+    font-size: 2em;
+}
+
+.topnav {
+    background-color: rgb(2, 0, 0);
+    overflow: hidden;
+}
+
+.topnav a {
+    float: left;
+    color: #ffffff;
+    text-align: center;
+    padding: 13px 20px;
+    text-decoration: none;
+    font-size: 18px;
+}
+

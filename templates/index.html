@@ -1,7 +1,24 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<div class="topnav">
+    <a href="/login">Kirjautuminen</a>
+    <a href="/register">Rekisteröinti</a>
+</div>
+
 <h2> Etusivu </h2>
+Keskusteluiden määrä: {{ count }}
+<hr>
+{% for message in messages %}
+<i>Viesti:</i> {{ message[0] }}
+<p>
+<i>Lähettäjä:</i> {{ message[1] }}
+<p>
+<i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}
+<hr>
+{% endfor %}
+
+
 {% if session.username %}
 <p>Olet kirjautunut käyttäjänimellä {{ session.username }}</p>
 <a href="/logout">Kirjaudu ulos</a>
@@ -9,20 +26,9 @@
 <a href="/new">Uusi keskustelu</a>
 {% else %}
 <p><a href="/login">Kirjaudu sisään</a></p>
+<p><a href="/register">Rekistöröinti</a></p>
 <br>
 {% endif %}
 
-
-<h3>Julkaisujen määrä: {{ count }}</h3>
-<hr>
-{for message in messages %}
-<i>Viesti:</i> {{ message[0] }}
-<p>
-<i>Lähettäjä:</i> {{ message[1] }}
-<p>
-<i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S")}}
-</p>
-<a href="/logout">Kirjaudu ulos</a>
-<hr>
 
 {% endblock %}
