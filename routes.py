@@ -9,13 +9,18 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
-    if request.method == "GET":
-        return render_template("register.html")
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        users.register(username, password)
-    return redirect("/")
+    if request.method == 'GET':
+        return render_template('register.html')
+
+    if request.method == 'POST':
+        username = request.form['username']
+
+        password = request.form['password']
+
+        if not users.register(username, password):
+            return render_template('error.html', message='Registration not correct')
+
+        return redirect('/')
 
 @app.route("/forum")
 def forum():
