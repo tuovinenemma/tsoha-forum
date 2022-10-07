@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block content %}
 <h2>Rekisteröinti</h2>
 
 <form action="/register" method="POST">
@@ -9,3 +11,4 @@ Salasana: <br><input type="password" name="password">
 </form>
 <p>
 <a href="/login">Palaa takaisin</a>
+{% endblock %}
