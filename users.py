@@ -14,7 +14,7 @@ def login(username, password):
         hash_value = user['password']
         if check_password_hash(hash_value, password):
             session['user_id'] = user[0]
-            session['user_username'] = user[1]
+            session['username'] = user[1]
             return True
         return False
 

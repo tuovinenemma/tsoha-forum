@@ -40,7 +40,7 @@ def login():
         return redirect("/")
   
 
-@app.route("/logout")
+@app.post("/logout")
 def logout():
     users.logout()
     return redirect("/")
