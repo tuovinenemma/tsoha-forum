@@ -9,6 +9,18 @@ def index():
     list = messages.get_list()
     return render_template("index.html", count=len(list), messages=list)
 
+@app.route("/new")
+def new():
+    return render_template("new.html")
+
+@app.route("/send", methods=["POST"])
+def send():
+    content = request.form["content"]
+    if messages.send(content):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Viestin lähetys ei onnistunut")
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -45,17 +57,7 @@ def logout():
     del session['username']
     return redirect('/')
 
-@app.route("/new")
-def new():
-    return render_template("new.html")
 
-@app.route("/send", methods=["POST"])
-def send():
-    content = request.form["content"]
-    if messages.send(content):
-        return redirect("/")
-    else:
-        return render_template("error.html", message="Viestin lähetys ei onnistunut")
 
 
 

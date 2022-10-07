@@ -2,16 +2,9 @@
 {% block content %}
 {% if session.username %}
 <p>Olet kirjautunut käyttäjänimellä {{ session.username }}</p>
-Viestien määrä: {{ count }}
-<hr>
-{% for message in messages %}
-<i>Viesti:</i> {{ message[0] }}
-<p>
-<i>Lähettäjä:</i> {{ message[1] }}
-<p>
-<i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}
-<hr>
 <a href="/logout">Kirjaudu ulos</a>
+
+
 {% else %}
 <h2>Kirjautuminen</h2>
 <form action="/login" method="POST">
