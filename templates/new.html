@@ -1,3 +1,5 @@
+{% extends "layout.html" %}
+{% block content %}
 <div class="topnav">
     <a href="/">Etusivu</a>
 </div>
@@ -6,7 +8,10 @@
 
 <form action="/send" method="post">
 Viesti: <br>
+<p>
 <textarea name="content" rows="3" cols="40"></textarea>
 <br>
+<p>
 <input type="submit" value="Lähetä">
 </form>
+{% endblock %}
