@@ -18,10 +18,19 @@ def new():
 def send():
     headline = request.form["headline"]
     content = request.form["content"]
-    if messages.send(headline, content):
-        return redirect("/")
-    else:
+
+    if len(headline) > 100:
+        return render_template("error.html", message="Otsikko on liian pitkä")
+
+    if len(content) > 5000:
+        return render_template("error.html", message="Viesti on liian pitkä")
+
+    if not messages.send(headline, content):
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
+
+    else:
+        return redirect("/")
+    
 
 @app.route("/new_review")
 def new_review():
@@ -52,6 +61,18 @@ def register():
         username = request.form['username']
 
         password = request.form['password']
+
+        if len(username) > 10:
+            return render_template('error.html', message='Käyttäjätunnus liian pitkä')
+        
+        if len(username) < 1:
+            return render_template('error.html', message='Käyttäjätunnus liian lyhyt')
+
+        if len(password) > 20:
+            return render_template('error.html', message='Salasana liian pitkä')
+
+        if len(password) < 1:
+            return render_template('error.html', message='Salasana liian lyhyt')
 
         if not users.register(username, password):
             return render_template('error.html', message='Rekisteröinti ei onnistunut')
