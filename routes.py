@@ -44,11 +44,6 @@ def send_review():
     else:
         return render_template("error.html", message="Palautteen lähetys ei onnistunut")
 
-@app.route("/chat/<int:id>", methods=["get"])
-def show_topic(id):
-    if request.method == 'GET':
-        info = messages.get_message_info(id)
-        return render_template('chat.html', id=id, title=info[0], content=info[1])
 
 
 
@@ -61,6 +56,7 @@ def register():
         username = request.form['username']
 
         password = request.form['password']
+
 
         if len(username) > 10:
             return render_template('error.html', message='Käyttäjätunnus liian pitkä')
