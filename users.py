@@ -1,5 +1,6 @@
 from db import db
-from flask import request, session
+import os
+from flask import request, session, abort
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
@@ -14,6 +15,7 @@ def login(username, password):
         if check_password_hash(hash_value, password):
             session['user_id'] = user[0]
             session['username'] = user[1]
+            session['csrf_token'] = os.urandom(16).hex()
             return True
         return False
 
@@ -40,3 +42,6 @@ def logout():
         return False
     return True
 
+def check_csrf():
+    if session['csrf_token'] != request.form['csrf_token']:
+        abort(403)
