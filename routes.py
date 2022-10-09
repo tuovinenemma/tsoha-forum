@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, session
 from db import db
 import users
 import messages
+import reviews
 
 @app.route("/")
 def index():
@@ -21,6 +22,18 @@ def send():
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
 
+@app.route("/new_review")
+def new_review():
+    return render_template("reviews.html")
+
+@app.route("/send_review", methods=["POST"])
+def send_review():
+    content = request.form["content"]
+    if reviews.send_review(content):
+        return redirect("/")
+    else:
+        return render_template("error.html", message="Palautteen lähetys ei onnistunut")
+
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -33,7 +46,7 @@ def register():
         password = request.form['password']
 
         if not users.register(username, password):
-            return render_template('error.html', message='Registration not correct')
+            return render_template('error.html', message='Rekisteröinti ei onnistunut')
 
         return redirect('/')
 

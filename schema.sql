@@ -11,3 +11,9 @@ CREATE TABLE messages (
     sent_at TIMESTAMP
 );
 
+CREATE TABLE reviews (
+    id SERIAL PRIMARY KEY,
+    content TEXT,
+    user_id INTEGER REFERENCES users,
+    sent_at TIMESTAMP
+);

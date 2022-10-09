@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/new">Uusi keskustelu</a>
+</div>
+
+<h2>Lähetä palautetta</h2>
+
+<form action="/send_review" method="post">
+Viesti: <br>
+<p>
+<textarea name="content" rows="3" cols="40"></textarea>
+<br>
+<p>
+<input type="submit" value="Lähetä">
+</form>
+{% endblock %}

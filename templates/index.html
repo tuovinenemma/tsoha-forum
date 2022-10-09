@@ -2,8 +2,9 @@
 {% block content %}
 
 <div class="topnav">
-    <a href="/login">Kirjautuminen</a>
+    <a href="/login">Kirjaudu sisään</a>
     <a href="/register">Rekisteröinti</a>
+    <a href="/new">Uusi keskustelu</a>
 </div>
 
 <h2> Etusivu </h2>
@@ -16,18 +17,22 @@ Keskusteluiden määrä: {{ count }}
 <p>
 <i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}
 <hr>
+<p>
 {% endfor %}
 
 
 {% if session.username %}
 <p>Olet kirjautunut sisään</p>
-<a href="/logout">Kirjaudu ulos</a>
-<br>
-<a href="/new">Uusi keskustelu</a>
 <p>
 <p>
-{% endif %}
-
+<div class="footer">
+    <a href="/logout">Kirjaudu ulos</a>
+    <a href="/new_review">Lähetä palautetta</a>
+    <br>
+</div>
+{% else %}
 <div class="footer">
 </div>
+{% endif %}
+
 {% endblock %}
