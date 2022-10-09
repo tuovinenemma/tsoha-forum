@@ -44,12 +44,12 @@ def send_review():
     else:
         return render_template("error.html", message="Palautteen lähetys ei onnistunut")
 
-@app.route("/chat/<int:id>")
-def chat(id):
-    sql = "SELECT content FROM messages WHERE id=:id"
-    result = db.session.execute(sql, {"id":id})
-    content = result.fetcone()
-    return render_template("chat.html", id=id, content=content)
+@app.route("/chat/<int:id>", methods=["get"])
+def show_topic(id):
+    if request.method == 'GET':
+        info = messages.get_message_info(id)
+        return render_template('chat.html', id=id, title=info[0], content=info[1])
+
 
 
 @app.route("/register", methods=["GET", "POST"])
