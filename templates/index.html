@@ -1,11 +1,18 @@
 {% extends "layout.html" %}
 {% block content %}
 
+{% if session.username %}
 <div class="topnav">
     <a href="/login">Kirjaudu sisään</a>
     <a href="/register">Rekisteröinti</a>
     <a href="/new">Uusi keskustelu</a>
 </div>
+{% else %}
+<div class="topnav">
+    <a href="/login">Kirjaudu sisään</a>
+    <a href="/register">Rekisteröinti</a>
+</div>
+{% endif %}
 
 <h2> Etusivu </h2>
 Keskusteluiden määrä: {{ count }}
