@@ -18,11 +18,15 @@
 Keskusteluiden määrä: {{ count }}
 <hr>
 {% for message in messages %}
-<i>Viesti:</i> {{ message[0] }}
+<h2>{{ message[0] }} </h2> 
 <p>
-<i>Lähettäjä:</i> {{ message[1] }}
+<h3>{{ message[1] }} </h3> 
 <p>
-<i>Aika:</i> {{ message[2].strftime("%Y-%m-%d %H:%M:%S") }}
+<i>Lähettäjä:</i> {{ message[2] }}
+<p>
+<i>Aika:</i> {{ message[3].strftime("%Y-%m-%d %H:%M:%S") }}
+<p>
+<a href="/chat/{{ id }}">Mene keskusteluun</a>
 <hr>
 <p>
 {% endfor %}

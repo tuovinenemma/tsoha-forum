@@ -6,6 +6,7 @@ CREATE TABLE users (
 
 CREATE TABLE messages (
     id SERIAL PRIMARY KEY,
+    headline TEXT,
     content TEXT,
     user_id INTEGER REFERENCES users,
     sent_at TIMESTAMP

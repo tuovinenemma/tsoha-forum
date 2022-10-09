@@ -16,8 +16,9 @@ def new():
 
 @app.route("/send", methods=["POST"])
 def send():
+    headline = request.form["headline"]
     content = request.form["content"]
-    if messages.send(content):
+    if messages.send(headline, content):
         return redirect("/")
     else:
         return render_template("error.html", message="Viestin lähetys ei onnistunut")
@@ -33,6 +34,13 @@ def send_review():
         return redirect("/")
     else:
         return render_template("error.html", message="Palautteen lähetys ei onnistunut")
+
+@app.route("/chat/<int:id>")
+def chat(id):
+    sql = "SELECT content FROM messages WHERE id=:id"
+    result = db.session.execute(sql, {"id":id})
+    content = result.fetcone()
+    return render_template("chat.html", id=id, content=content)
 
 
 @app.route("/register", methods=["GET", "POST"])
