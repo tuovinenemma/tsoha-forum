@@ -18,7 +18,7 @@
 Keskusteluiden määrä: {{ count }}
 <hr>
 {% for message in messages %}
-<h2>{{ message[0] }} </h2> 
+<h2>{{ message[1] }} </h2> 
 <p>
 <h3>{{ message[1] }} </h3> 
 <p>
@@ -26,7 +26,7 @@ Keskusteluiden määrä: {{ count }}
 <p>
 <i>Aika:</i> {{ message[3].strftime("%Y-%m-%d %H:%M:%S") }}
 <p>
-<a href="/chat/{{id}}">Mene keskusteluun</a>
+<a href="/post/{{ message['id'] }}">Mene keskusteluun</a>
 <hr>
 <p>
 {% endfor %}

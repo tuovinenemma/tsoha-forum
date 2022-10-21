@@ -6,6 +6,10 @@ def get_list():
     result = db.session.execute(sql)
     return result.fetchall()
 
+def get_post_subject(id):
+    sql = 'SELECT * FROM messages WHERE id=:id'
+    return db.session.execute(sql, {'id':id}).fetchone()[0]
+
 def send(headline, content):
     user_id = users.user_id()
     if user_id == 0:

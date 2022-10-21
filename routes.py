@@ -2,6 +2,7 @@ from app import app
 from flask import render_template, request, redirect, session
 from db import db
 import users
+from messages import get_post_subject
 import messages
 import reviews
 
@@ -30,7 +31,10 @@ def send():
 
     else:
         return redirect("/")
-    
+
+@app.route('/post/<int:id>', methods=['GET'])
+def post(id):
+    return render_template('post.html')
 
 @app.route("/new_review")
 def new_review():
@@ -43,8 +47,6 @@ def send_review():
         return redirect("/")
     else:
         return render_template("error.html", message="Palautteen lähetys ei onnistunut")
-
-
 
 
 @app.route("/register", methods=["GET", "POST"])
