@@ -22,7 +22,7 @@ def send(headline, content):
 
 
 def search_messages(search):
-    sql = 'select m.id, m.headline, m.content, m.sent_at, u.username '\
-        'from messages m, users u where m.user_id=u.id '\
-        'and (m.headline like :search or m.content like :search)'
+    sql = 'SELECT m.id, m.headline, m.content, m.sent_at, u.username '\
+        'FROM messages m, users u WHERE m.user_id=u.id '\
+        'AND (m.headline like :search or m.content like :search)'
     return db.session.execute(sql, {'search':'%'+search+'%'}).fetchall()

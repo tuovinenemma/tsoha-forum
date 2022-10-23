@@ -26,7 +26,6 @@ def message(id):
         return render_template('message.html', id=id, message=message, comments=list, likes=likes, dislikes=dislikes)
 
 
-
 @app.route("/message/<int:id>/new_comment", methods=['post'])
 def new_comment(id):
     users.check_csrf()
@@ -36,7 +35,6 @@ def new_comment(id):
         return redirect(f"/message/{message_id}")
     else:
         return render_template("error.html", message="Kommetin lähetys ei onnistunut")
-
 
 @app.route("/new")
 def new():
@@ -59,8 +57,6 @@ def send():
 
     else:
         return redirect("/")
-
-
 
 @app.route("/new_review")
 def new_review():
@@ -108,8 +104,7 @@ def register():
             return redirect('/')
         else:
             return render_template('error.html', message='Rekisteröinti ei onnistunut')
-
-        
+  
 
 @app.route('/message/<int:id>/like', methods=['get'])
 def like(id):
@@ -125,7 +120,6 @@ def dislike(id):
         disliked(message_id)
         return redirect(f'/message/{message_id}')
 
-
 @app.route("/login",methods=["GET", "POST"])
 def login():
     if request.method == "GET":
@@ -138,7 +132,6 @@ def login():
             
         session['username'] = username
         return redirect("/")
-  
 
 @app.route("/logout")
 def logout():
