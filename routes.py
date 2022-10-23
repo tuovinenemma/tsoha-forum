@@ -19,6 +19,10 @@ def message(id):
         list = get_comments_list(id)
         likes = get_likes(id)
         dislikes = get_dislikes(id)
+        if likes == None:
+            likes = 0
+        if dislikes == None:
+            dislikes = 0
         return render_template('message.html', id=id, message=message, comments=list, likes=likes, dislikes=dislikes)
 
 
