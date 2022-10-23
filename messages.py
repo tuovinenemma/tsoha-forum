@@ -21,7 +21,8 @@ def send(headline, content):
     return True
 
 
-def delete_message(message_id, user_id):
-    sql = 'UPDATE messages SET deleted = True WHERE id = :message_id AND user_id = :user_id'
-    db.session.execute(sql, {'message_id': message_id, 'user_id': user_id})
-    db.session.commit()
+def search_messages(search):
+    sql = 'select m.id, m.headline, m.content, m.sent_at, u.username '\
+        'from messages m, users u where m.user_id=u.id '\
+        'and (m.headline like :search or m.content like :search)'
+    return db.session.execute(sql, {'search':'%'+search+'%'}).fetchall()

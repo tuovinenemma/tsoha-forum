@@ -60,6 +60,13 @@ th, td {
     font-size: 18px;
 }
 
+.search {
+    width: 400px;
+    margin-top: 20px;
+    margin-left: 20px;
+    background-color: white;
+}
+
 .footer {
     position: left;
     bottom: 1;

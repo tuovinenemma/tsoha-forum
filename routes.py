@@ -2,7 +2,7 @@ from app import app
 from flask import redirect, render_template, request, session
 from comments import get_comments_list
 from db import db
-from messages import get_messages_list, get_message
+from messages import get_messages_list, get_message, search_messages
 import messages, reviews, comments, users
 from likes import liked, get_likes, disliked, get_dislikes
 
@@ -145,19 +145,16 @@ def logout():
     del session['username']
     return redirect('/')
 
+@app.route('/search', methods=['get', 'post'])
+def search():
+    if request.method == 'GET':
+        pass
+    if request.method == 'POST':
+        search = request.form['search']
+        messages = search_messages(search)
+        return render_template('search.html', messages=messages)
 
-@app.route('/delete_message', methods=["post"])
-def delete_message():
-    users.check_csrf()
 
-    message_id = request.form['message_id']
-
-    try:
-        messages.delete_message(message_id, users.user_id())
-        return redirect("/")
-
-    except:
-        return render_template("error.html", message="Keskustelun poistaminen epäonnistui")
 
 
 
