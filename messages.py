@@ -21,4 +21,7 @@ def send(headline, content):
     return True
 
 
-    
+def delete_message(message_id, user_id):
+    sql = 'UPDATE messages SET deleted = True WHERE id = :message_id AND user_id = :user_id'
+    db.session.execute(sql, {'message_id': message_id, 'user_id': user_id})
+    db.session.commit()

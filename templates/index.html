@@ -27,7 +27,16 @@ Keskusteluiden määrä: {{ count }}
 <i>Aika:</i> {{ message[3].strftime("%Y-%m-%d %H:%M:%S") }}
 <p>
 <button><a href="/message/{{ message['id'] }}">Mene keskusteluun</a></button>
-
+<p>
+{% if session.role == 2 %}
+<p>
+<form action="/delete_message" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="hidden" name="message_id" value="{{ message[0] }}">
+    <input type="submit" value="Poista keskustelu">
+</form>
+</p>
+{% endif %}
 <hr>
 <p>
 {% endfor %}

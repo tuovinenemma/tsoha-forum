@@ -1,6 +1,6 @@
 from app import app
-from flask import redirect, render_template, request, session, abort
-from comments import get_comment, get_comments_list
+from flask import redirect, render_template, request, session
+from comments import get_comments_list
 from db import db
 from messages import get_messages_list, get_message
 import messages, reviews, comments, users
@@ -146,7 +146,18 @@ def logout():
     return redirect('/')
 
 
+@app.route('/delete_message', methods=["post"])
+def delete_message():
+    users.check_csrf()
 
+    message_id = request.form['message_id']
+
+    try:
+        messages.delete_message(message_id, users.user_id())
+        return redirect("/")
+
+    except:
+        return render_template("error.html", message="Keskustelun poistaminen epäonnistui")
 
 
 
