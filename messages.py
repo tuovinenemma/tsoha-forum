@@ -20,11 +20,5 @@ def send(headline, content):
     db.session.commit()
     return True
 
-def delete_message(message_id):
-    sql= '''UPDATE messages SET visibility=FALSE 
-            WHERE id=:id'''
-    db.session.execute(sql, {"id":message_id})
-    db.session.commit()
-    return True
 
     

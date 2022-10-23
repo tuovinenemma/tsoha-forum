@@ -146,17 +146,6 @@ def logout():
     return redirect('/')
 
 
-@app.route("/delete_message",methods=["get", "post"])
-def delete_message():
-    message_id = request.form["message_id"]
-    users.check_csrf()
-    try:
-        messages.delete_message(message_id)
-    except:
-        return render_template("error.html", message="Keskustelun poisto epäonnistui")
-        
-    return redirect("/")
-
 
 
 
