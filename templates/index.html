@@ -26,7 +26,9 @@ Keskusteluiden määrä: {{ count }}
 <p>
 <i>Aika:</i> {{ message[3].strftime("%Y-%m-%d %H:%M:%S") }}
 <p>
-<button><a href="/message/{{ message['0'] }}">Mene keskusteluun</a></button>
+<button><a href="/message/{{ message['id'] }}">Mene keskusteluun</a></button>
+
+{% endif %}
 <hr>
 <p>
 {% endfor %}
