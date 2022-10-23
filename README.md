@@ -13,6 +13,7 @@ Sovelluksen ominaisuuksia:
 * Käyttäjä voi luoda alueelle uuden ketjun antamalla ketjun otsikon ja aloitusviestin sisällön.
 * Käyttäjä voi kirjoittaa uuden viestin olemassa olevaan ketjuun.
 * Käyttäjä voi etsiä kaikki viestit, joiden osana on annettu sana.
-* Käyttätä voi antaa palautetta keskustelupalstasta
+* Käyttäjä voi antaa palautetta keskustelupalstasta
+* Käyttäjä voi tykätä tai ei-tykätä keskusteluista
 * Ylläpitäjä voi katsoa käyttäjien antamat palautteet
 
