@@ -2,7 +2,7 @@ from app import app
 from flask import redirect, render_template, request, session, abort
 from comments import get_comment, get_comments_list
 from db import db
-from messages import get_messages_list, get_message, delete_message
+from messages import get_messages_list, get_message
 import messages, reviews, comments, users
 from likes import liked, get_likes, disliked, get_dislikes
 
