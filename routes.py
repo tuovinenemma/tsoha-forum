@@ -96,10 +96,12 @@ def register():
         if role not in ['1', '2']:
             return render_template('error.html', message='Rooli vaaditaan kirjautumiseen')
 
-        if not users.register(username, password, role):
+        if users.register(username, password, role):
+            return redirect('/')
+        else:
             return render_template('error.html', message='Rekisteröinti ei onnistunut')
 
-        return redirect('/')
+        
 
 @app.route('/message/<int:id>/like', methods=['get'])
 def like(id):
