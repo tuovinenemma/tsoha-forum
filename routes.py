@@ -83,7 +83,7 @@ def register():
         return render_template('register.html')
 
     if request.method == 'POST':
-        users.check_csrf()
+        
         username = request.form['username']
 
         password = request.form['password']
@@ -131,7 +131,6 @@ def login():
     if request.method == "GET":
         return render_template("login.html")
     if request.method == "POST":
-        users.check_csrf()
         username = request.form["username"]
         password = request.form["password"]
         if not users.login(username, password):
