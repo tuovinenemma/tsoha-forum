@@ -20,3 +20,4 @@ def send_comment(content, message_id):
     db.session.execute(sql, {"content":content, "message_id":message_id, "user_id":user_id})
     db.session.commit()
     return True
+
