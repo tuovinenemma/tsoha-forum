@@ -20,6 +20,7 @@ Rooli:
 </select>
 <p>
 <input type="submit" value="Luo käyttäjä">
+<input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
 </form>
 <p>
 {% endblock %}

@@ -2,7 +2,7 @@ from app import app
 from flask import redirect, render_template, request, session, abort
 from comments import get_comment, get_comments_list
 from db import db
-from messages import get_post_subject, get_messages_list, get_message
+from messages import get_messages_list, get_message, delete_message
 import messages, reviews, comments, users
 from likes import liked, get_likes, disliked, get_dislikes
 
@@ -29,6 +29,7 @@ def message(id):
 
 @app.route("/message/<int:id>/new_comment", methods=['post'])
 def new_comment(id):
+    users.check_csrf()
     content = request.form["content"]
     message_id = id
     if comments.send_comment(content, message_id):
@@ -43,6 +44,7 @@ def new():
 
 @app.route("/send", methods=["POST"])
 def send():
+    users.check_csrf()
     headline = request.form["headline"]
     content = request.form["content"]
 
@@ -67,6 +69,7 @@ def new_review():
 
 @app.route("/send_review", methods=["POST"])
 def send_review():
+    users.check_csrf()
     content = request.form["content"]
     if reviews.send_review(content):
         return redirect("/")
@@ -80,6 +83,7 @@ def register():
         return render_template('register.html')
 
     if request.method == 'POST':
+        users.check_csrf()
         username = request.form['username']
 
         password = request.form['password']
@@ -127,6 +131,7 @@ def login():
     if request.method == "GET":
         return render_template("login.html")
     if request.method == "POST":
+        users.check_csrf()
         username = request.form["username"]
         password = request.form["password"]
         if not users.login(username, password):
@@ -140,6 +145,14 @@ def login():
 def logout():
     del session['username']
     return redirect('/')
+
+
+@app.route('/message/<int:id>/deletemessage', methods=['get'])
+def deletemessage(id):
+    if request.method == 'GET':
+        message_id = id
+        delete_message(message_id)
+        return redirect(f'/')
 
 
 

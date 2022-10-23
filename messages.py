@@ -10,10 +10,6 @@ def get_message(id):
     sql = 'select m.id, m.headline, m.content, m.sent_at, m.user_id, u.username from messages m, users u where m.id=:id'
     result = db.session.execute(sql, {'id':id})
     return result.fetchone()
-    
-def get_post_subject(id):
-    sql = 'SELECT * FROM messages WHERE id=:id'
-    return db.session.execute(sql, {'id':id}).fetchone()[0]
 
 def send(headline, content):
     user_id = users.user_id()
@@ -24,3 +20,9 @@ def send(headline, content):
     db.session.commit()
     return True
 
+def delete_message(message_id):
+    sql = 'DELETE from messages where id=:message_id'
+    db.session.execute(sql, {'message_id':message_id})
+    db.session.commit()
+
+    
