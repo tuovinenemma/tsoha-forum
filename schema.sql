@@ -33,5 +33,11 @@ CREATE TABLE likes (
     liked INTEGER,
     user_id INTEGER REFERENCES users,
     message_id INTEGER REFERENCES messages
+);
+
+CREATE TABLE dislikes (
+    id SERIAL PRIMARY KEY,
     disliked INTEGER,
+    user_id INTEGER REFERENCES users,
+    message_id INTEGER REFERENCES messages
 );
