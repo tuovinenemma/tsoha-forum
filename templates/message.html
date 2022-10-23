@@ -26,6 +26,8 @@
 <p>
 <font-size="-1">Aika:</font-size="-1"> {{ message[3].strftime("%Y-%m-%d %H:%M:%S") }} <p>
 <p>
+<a href="/message/{{ message['id'] }}/like">&#x1F44D;</a> : {{likes}}
+<a href="/message/{{ message['id'] }}/dislike">&#x1F44E;</a> : {{dislikes}}
 </p>
 </div>
 <h3>Kommentit:</h2>
