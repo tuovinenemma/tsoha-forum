@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block content %}
+
+{% if session.username %}
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/login">Kirjaudu sisään</a>
+    <a href="/register">Rekisteröinti</a>
+    <a href="/new">Uusi keskustelu</a>
+</div>
+{% else %}
+<div class="topnav">
+    <a href="/">Etusivu</a>
+    <a href="/login">Kirjaudu sisään</a>
+    <a href="/register">Rekisteröinti</a>
+</div>
+{% endif %}
+
+<h2>{{ message[1] }} </h2>
+
+<i>Lähettäjä:</i> {{ message[5] }}
+<p>
+<div class="post">
+<h3>{{ message[2] }} </h3> 
+<p>
+<p>
+<font-size="-1">Aika:</font-size="-1"> {{ message[3].strftime("%Y-%m-%d %H:%M:%S") }} <p>
+<p>
+{% if session.username %}
+<a href="/message/{{ id }}/like">&#x1F44D;</a> : {{ likes }} 
+<a href="/message/{{ id }}/dislike">&#x1F44E;</a> : {{ dislikes }} 
+{% endif %}
+</div>
+<h3>Kommentit:</h2>
+<hr>
+{% for comment in comments %}
+<h4>Lähettäjä:</i> {{ comment[4] }}</h4>
+<div class="comment">
+<p>
+<p>
+<i>{{ comment[1] }} </i> 
+<p>
+<p>
+<font-size="-1">Aika:</font-size="-1"> {{ comment[2].strftime("%Y-%m-%d %H:%M:%S") }} 
+<p>
+</div>
+
+{% endfor %}
+{% if session.username %}
+<p>
+</p>
+<h3>Kommentoi postausta</h3>
+<form action="/message/{{ message['id'] }}/new_comment" method="post">
+    <p>
+    <textarea name="content" rows="4" cols="30" value="content"></textarea>
+    <p><input type="submit" value="Kommentoi">
+</form>
+{% endif %}
+<button><a href="/">Takaisin</a></button>
+{% if session.username %}
+<p>Olet kirjautunut sisään</p>
+<p>
+<p>
+<div class="footer">
+    <a href="/logout">Kirjaudu ulos</a>
+    <a href="/new_review">Lähetä palautetta</a>
+    <br>
+</div>
+{% else %}
+<div class="footer">
+</div>
+{% endif %}
+
+{% endblock %}

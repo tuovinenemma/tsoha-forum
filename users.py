@@ -5,30 +5,28 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 
 def login(username, password):
-    sql = "SELECT id, password FROM users WHERE username=:username"    
+    sql = 'SELECT id, role, password, username FROM users WHERE username=:username'   
     result = db.session.execute(sql, {'username': username})
     user = result.fetchone()
     if not user:
         return False
-    else:
-        hash_value = user['password']
-        if check_password_hash(hash_value, password):
-            session['user_id'] = user[0]
-            session['username'] = user[1]
-            session['csrf_token'] = os.urandom(16).hex()
-            return True
-        return False
+    if check_password_hash(user[2], password):
+        session['user_id'] = user[0]
+        session['role'] = user[1]
+        session['username'] = user[3]
+        return True
 
-def register(username, password):
+
+def register(username, password, role):
     hash_value = generate_password_hash(password)
     try:
-        sql = 'INSERT into users (username, password) values (:username, :password)'
-        db.session.execute(sql, {'username': username, 'password': hash_value})
+        sql = 'INSERT INTO users (username, password, role) VALUES (:username, :password, :role)'
+        db.session.execute(
+            sql, {'username': username, 'password': hash_value, 'role': role})
         db.session.commit()
     except:
         return False
-
-    return login(username, password)
+    return login(username, password, role)
 
 
 def user_id():

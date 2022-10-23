@@ -2,6 +2,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE,
     password TEXT
+    role integer
 );
 
 CREATE TABLE messages (
@@ -17,4 +18,20 @@ CREATE TABLE reviews (
     content TEXT,
     user_id INTEGER REFERENCES users,
     sent_at TIMESTAMP
+);
+
+CREATE TABLE comments (
+    id SERIAL PRIMARY KEY,
+    content TEXT,
+    message_id INTEGER REFERENCES messages,
+    user_id INTEGER REFERENCES users,
+    sent_at TIMESTAMP
+);
+
+CREATE TABLE likes (
+    id SERIAL PRIMARY KEY,
+    liked INTEGER,
+    user_id INTEGER REFERENCES users,
+    message_id INTEGER REFERENCES messages
+    disliked INTEGER,
 );

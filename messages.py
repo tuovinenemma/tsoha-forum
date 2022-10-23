@@ -1,11 +1,16 @@
 from db import db
 import users
 
-def get_list():
-    sql = "SELECT M.headline, M.content, U.username, M.sent_at FROM messages M, users U WHERE M.user_id=U.id ORDER BY M.id"
+def get_messages_list():
+    sql = 'select m.id, m.headline, m.content, m.sent_at, m.user_id, u.username from messages m, users u where m.user_id=u.id order by m.id desc'
     result = db.session.execute(sql)
     return result.fetchall()
 
+def get_message(id):
+    sql = 'select m.id, m.headline, m.content, m.sent_at, m.user_id, u.username from messages m, users u where m.id=:id'
+    result = db.session.execute(sql, {'id':id})
+    return result.fetchone()
+    
 def get_post_subject(id):
     sql = 'SELECT * FROM messages WHERE id=:id'
     return db.session.execute(sql, {'id':id}).fetchone()[0]

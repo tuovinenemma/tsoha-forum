@@ -1,15 +1,37 @@
 from app import app
-from flask import render_template, request, redirect, session
+from flask import redirect, render_template, request, session, abort
+from comments import get_comment, get_comments_list
 from db import db
-import users
-from messages import get_post_subject
-import messages
-import reviews
+from messages import get_post_subject, get_messages_list, get_message
+import messages, reviews, comments, users
+from likes import liked, get_likes, disliked, get_dislikes
+
 
 @app.route("/")
 def index():
-    list = messages.get_list()
+    list = get_messages_list()
     return render_template("index.html", count=len(list), messages=list)
+
+@app.route('/message/<int:id>', methods=['get'])
+def message(id):
+    if request.method == 'GET':
+        message = get_message(id)
+        list = get_comments_list(id)
+        likes = get_likes(id)
+        dislikes = get_dislikes(id)
+        return render_template('message.html', id=id, message=message, comments=list, likes=likes, dislikes=dislikes)
+
+
+
+@app.route("/message/<int:id>/new_comment", methods=['post'])
+def new_comment(id):
+    content = request.form["content"]
+    message_id = id
+    if comments.send_comment(content, message_id):
+        return redirect(f"/message/{message_id}")
+    else:
+        return render_template("error.html", message="Kommetin lähetys ei onnistunut")
+
 
 @app.route("/new")
 def new():
@@ -32,13 +54,12 @@ def send():
     else:
         return redirect("/")
 
-@app.route('/post/<int:id>', methods=['GET'])
-def post(id):
-    return render_template('post.html')
+
 
 @app.route("/new_review")
 def new_review():
-    return render_template("reviews.html")
+    list = reviews.get_review_list()
+    return render_template("reviews.html", reviews=list)
 
 @app.route("/send_review", methods=["POST"])
 def send_review():
@@ -59,7 +80,6 @@ def register():
 
         password = request.form['password']
 
-
         if len(username) > 10:
             return render_template('error.html', message='Käyttäjätunnus liian pitkä')
         
@@ -72,10 +92,28 @@ def register():
         if len(password) < 1:
             return render_template('error.html', message='Salasana liian lyhyt')
 
-        if not users.register(username, password):
+        role = request.form['role']
+        if role not in ['1', '2']:
+            return render_template('error.html', message='Rooli vaaditaan kirjautumiseen')
+
+        if not users.register(username, password, role):
             return render_template('error.html', message='Rekisteröinti ei onnistunut')
 
         return redirect('/')
+
+@app.route('/message/<int:id>/like', methods=['get'])
+def like(id):
+    if request.method == 'GET':
+        message_id = id
+        liked(message_id)
+        return redirect(f'/message/{message_id}')
+
+@app.route('/message/<int:id>/dislike', methods=['get'])
+def dislike(id):
+    if request.method == 'GET':
+        message_id = id
+        disliked(message_id)
+        return redirect(f'/message/{message_id}')
 
 
 @app.route("/login",methods=["GET", "POST"])

@@ -2,8 +2,26 @@
 {% block content %}
 <div class="topnav">
     <a href="/">Etusivu</a>
+    <a href="/login">Kirjaudu sisään</a>
+    <a href="/register">Rekisteröinti</a>
     <a href="/new">Uusi keskustelu</a>
 </div>
+
+{% if session.role == 2%}
+<h2>Palautteet:</h2>
+{% for review in reviews %}
+<h3>Lähettäjä:</i> {{ review[1] }}</h4>
+<div class="comment">
+<p>
+<p>
+<i>{{ review[0] }} </i> 
+<p>
+<p>
+<font-size="-1">Aika:</font-size="-1"> {{ review[2].strftime("%Y-%m-%d %H:%M:%S") }} 
+<p>
+</div>
+{% endfor %}
+{% endif %}
 
 <h2>Lähetä palautetta</h2>
 

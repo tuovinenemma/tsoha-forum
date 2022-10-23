@@ -20,13 +20,13 @@ Keskusteluiden määrä: {{ count }}
 {% for message in messages %}
 <h2>{{ message[1] }} </h2> 
 <p>
-<h3>{{ message[1] }} </h3> 
+<h3>{{ message[2] }} </h3> 
 <p>
-<i>Lähettäjä:</i> {{ message[2] }}
+<i>Lähettäjä:</i> {{ message[5] }}
 <p>
 <i>Aika:</i> {{ message[3].strftime("%Y-%m-%d %H:%M:%S") }}
 <p>
-<a href="/post/{{ message['id'] }}">Mene keskusteluun</a>
+<button><a href="/message/{{ message['id'] }}">Mene keskusteluun</a></button>
 <hr>
 <p>
 {% endfor %}

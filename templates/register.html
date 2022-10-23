@@ -13,7 +13,14 @@ Käyttäjätunnus (1-10 merkkiä): <br><input type="text" name="username" >
 <p>
 Salasana (1-20 merkkiä): <br><input type="password" name="password">
 <p>
+Rooli:
+<select name="role">
+    <option value="1"> Käyttäjä
+    <option value="2"> Ylläpitäjä
+</select>
+<p>
 <input type="submit" value="Luo käyttäjä">
 </form>
 <p>
 {% endblock %}
+
