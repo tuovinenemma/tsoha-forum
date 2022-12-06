@@ -1,5 +1,7 @@
 # Talk2us-Keskustelusovellus
 
+ Harjoitustyö Helsingin yliopiston Tietokantasovellus-kurssille.
+
 ### Sovelluksessa näkyy keskustelualueita, joista jokaisella on tietty aihe. Alueilla on keskusteluketjuja, jotka muodostuvat viesteistä. Jokainen käyttäjä on peruskäyttäjä tai ylläpitäjä.
 
 Sovelluksen saa käyttöön [Herokussa](https://tsoha-talk2us.herokuapp.com/)
